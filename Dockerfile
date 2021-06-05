@@ -4,7 +4,7 @@ MAINTAINER Jeremie Dufault <jeremie@jeremiedufault.ca>
 RUN apt-get update
 RUN apt-get install sqlite3 libc6 libcrypto++8 lsb-release libcurl4 libfuse2 wget btrfs-progs libcurl3-gnutls -y
 
-RUN wget -O /root/urbackup.deb https://beta.urbackup.org/Server/2.5.19%20beta/urbackup-server_2.5.19_amd64.deb;
+RUN wget -O /root/urbackup.deb https://beta.urbackup.org/Server/2.5.20%20beta/urbackup-server_2.5.20_amd64.deb;
 
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /root/urbackup.deb  || true
 
