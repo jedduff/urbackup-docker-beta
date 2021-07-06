@@ -1,7 +1,6 @@
-# urbackup-docker
-:floppy_disk: docker container for urbackup-server
+# urbackup-docker beta 2.5.x
+:floppy_disk: docker container for urbackup-server beta 2.5.x
 
-[![Docker Automated buil](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/tristanteu/urbackup-docker/)
 
 UrBackup is an easy to setup Open Source client/server backup system, that through a combination of image and file backups accomplishes both data safety and a fast restoration time.
 
@@ -10,7 +9,7 @@ UrBackup is an easy to setup Open Source client/server backup system, that throu
 
 ### Pull:
 ```bash
-docker pull tristanteu/urbackup-docker
+docker pull jedduff/urbackup-docker:2.5.x
 ```
 
 ### Run:
@@ -22,7 +21,7 @@ docker run \
 -v /home/docker/urbackup/db/:/var/urbackup \
 -v /media/8tb.wd.red/backup/:/backup \
 --net="host" \
--d tristanteu/urbackup-docker
+-d jedduff/urbackup-docker:2.5.x
 ```
 
 ### Docker-compose.yml - needed setting for native btrfs storage snapshots
@@ -32,7 +31,7 @@ docker run \
 ### Docker-compose.yml example:
 ```bash
   urbackup:
-    image: tristanteu/urbackup-docker
+    image: jedduff/urbackup-docker:2.5.x
     container_name: urbackup
     network_mode: host
     cap_add:
@@ -42,7 +41,7 @@ docker run \
     - /srv/docker/compose/urbackup:/var/urbackup
     - /media/backup:/backup
     environment:
-    - TZ=Europe/Vienna
+    - TZ=America/New_York
     restart: always
 ```
 
@@ -52,7 +51,7 @@ yourserverip:55414
 ### Show all Cli Commands
 ```bash
 docker run \
---rm tristanteu/urbackup-docker --help
+--rm jedduff/urbackup-docker:2.5.x --help
 ```
 
 ### Remove-Unkown
@@ -62,7 +61,7 @@ Cleaning the backup folder of files not known by UrBackup Database
 docker run \
 -v /home/docker/urbackup/db/:/var/urbackup \
 -v /media/8tb.wd.red/backup/:/backup \
---rm tristanteu/urbackup-docker remove-unknown
+--rm jedduff/urbackup-docker:2.5.x remove-unknown
 ```
 
 ### Cleanup
@@ -73,7 +72,7 @@ If it should only delete old backups use “0%”.
 docker run \
 -v /home/docker/urbackup/db/:/var/urbackup \
 -v /media/8tb.wd.red/backup/:/backup \
---rm tristanteu/urbackup-docker cleanup --amount 0%
+--rm jedduff/urbackup-docker:2.5.x cleanup --amount 0%
 ```
 
 ### Network Mode
@@ -85,9 +84,9 @@ if you don't want to use net="host" you can expose the following ports
 
 ### Build
 ```bash
-$ git clone https://github.com/firsttris/urbackup-docker.git
-$ cd urbackup-docker
-$ docker build -t tristanteu/urbackup-docker .
+$ gh repo clone jedduff/urbackup-docker-beta
+$ cd urbackup-docker-beta
+$ docker build -t jedduff/urbackup-docker:2.5.x .
 ```
 
 ### Important - First Start
